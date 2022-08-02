@@ -1,0 +1,29 @@
+.forms{
+    border-radius: 1rem;
+    background-color: #181818;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    text-align: center;
+}
+.formdiv{
+    margin-top: 3rem;
+}
+.inp{
+    background-color: #333;
+    border-color: gray;
+    color: #fff;
+}
+.inp:hover, .inp:focus{
+    background-color: #222;
+    box-shadow: none;
+    border-color: gray;
+    color: #fff;
+}
+.button{
+    background-color: #252525;
+    color: #fff;
+}
+.button:hover{
+    color: gray;
+}
