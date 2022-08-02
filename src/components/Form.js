@@ -1,17 +1,16 @@
 import { useState } from "react";
 import './form.css';
-function Form() {
-    const [Weight, setWeight] = useState("");
+function Form({getData}) { //passing the details as props
+    const [Weight, setWeight] = useState(""); 
     const [Height, setHeight] = useState("");
     const [Alert, setAlert] = useState(false)
     const onSubmit =(e)=>{
         e.preventDefault();
-        if(isNaN(Weight) || isNaN(Height)){
+        if(isNaN(Weight) || isNaN(Height)){ //checks wheather the input value is number
             setAlert(true)
         }else{
+            getData(Weight,Height);  //passes the values only if it is number
             setAlert(false)
-            console.log(Weight);
-            console.log(Height);
         }
     };
     return (
