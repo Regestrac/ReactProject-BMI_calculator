@@ -6,12 +6,34 @@ import { useState } from 'react';
 function App() {
   const [Bmi, setBmi] = useState("00.00"); 
   const [BmiType, setBmiType] = useState("Category");
+  const [ChangeWeight, setChangeWeight] = useState({weight:"", type:""});
+  const [BmiRange, setBmiRange] = useState({
+    underWeight:{low:("")},
+    normal:{low:"", high:""},
+    overWeight:{low:"", high:""},
+    obesityOne:{low:"", high:""},
+    obesityTwo:{low:"", high:""},
+    obesityThree:{high:""},
+  })
   const onFormSub=(w,h)=>{
     let bmi = calBmi(w,h); //gets valve of bmi after calculation
     setBmi(bmi);
     setBmiType(weightType(bmi)); //gets type after checking conditions
+    const range ={
+      underWeight:{low:calWeight(18.499,h)},
+      normal:{low:calWeight(18.5,h), high:calWeight(24.999,h)},
+      overWeight:{low:calWeight(25,h), high:calWeight(29.999,h)},
+      obesityOne:{low:calWeight(30,h), high:calWeight(34.999,h)},
+      obesityTwo:{low:calWeight(35,h), high:calWeight(39.999,h)},
+      obesityThree:{high:calWeight(40,h)},
+    }
+    setBmiRange(range);
+    setChangeWeight(weightChange(bmi,w,range));
   }
+  
   const calBmi=(w,h)=> (w/(h*h)).toFixed(2); //calculates bmi
+  const calWeight=(bmi,h)=>(bmi*h*h).toFixed(2) //calculates weight
+  
   const weightType=(bmi)=>{     //checks condition to find type
     if(bmi<18.5){           
       return "Underweight"
@@ -30,11 +52,13 @@ function App() {
   return (
     <div>
       <Form getData ={onFormSub}/>
+      <div className='bmi-data'>
       <div className='col-12 col-md-6'>
-      <BmiScore bmiNo={Bmi} bmiName={BmiType}/>
+      <BmiScore bmiNo={Bmi} bmiName={BmiType} changeWeight={ChangeWeight}/>
       </div>
       <div className='col-12 col-md-6'>
-      <BmiList/>
+      <BmiList range={BmiRange} bmi={Bmi}/>
+      </div>
       </div>
     </div>
   );

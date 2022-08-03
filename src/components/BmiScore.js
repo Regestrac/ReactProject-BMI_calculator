@@ -1,5 +1,6 @@
 import './bmiScore.css'
-function BmiScore({bmiNo, bmiName}) {
+function BmiScore({bmiNo, bmiName, changeWeight}) {
+  console.log(changeWeight);
   return (
     <div className="bmi-score">
       <h3 className="bmi-heading">Your BMI Score</h3>
