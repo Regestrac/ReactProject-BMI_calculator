@@ -3,7 +3,7 @@ import './form.css';
 function Form({getData}) { //passing the details as props
     const [Weight, setWeight] = useState(""); 
     const [Height, setHeight] = useState("");
-    const [Alert, setAlert] = useState(false)
+    const [Alert, setAlert] = useState(false);
     const onSubmit =(e)=>{
         e.preventDefault();
         if(isNaN(Weight) || isNaN(Height)){ //checks wheather the input value is number
