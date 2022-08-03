@@ -11,6 +11,8 @@ function Form({getData}) { //passing the details as props
         }else{
             getData(Weight,Height);  //passes the values only if it is number
             setAlert(false)
+            // setHeight("") //used to clear the input field after checking bmi each time
+            // setWeight("")
         }
     };
     return (

@@ -33,7 +33,19 @@ function App() {
   
   const calBmi=(w,h)=> (w/(h*h)).toFixed(2); //calculates bmi
   const calWeight=(bmi,h)=>(bmi*h*h).toFixed(2) //calculates weight
-  
+  const weightChange=(bmi,w,range)=>{
+    let changeObj;
+    if(bmi<18.5){
+      changeObj={ weight:(range.normal.low - w).toFixed(2),type:"negative"};
+      return changeObj;
+    }else if(bmi>=25){
+      changeObj={ weight:(w - range.normal.high).toFixed(2),type:"positive"};
+      return changeObj;
+    }else{
+      changeObj={ weight:0,type:"normal"};
+      return changeObj;
+    }
+  }
   const weightType=(bmi)=>{     //checks condition to find type
     if(bmi<18.5){           
       return "Underweight"

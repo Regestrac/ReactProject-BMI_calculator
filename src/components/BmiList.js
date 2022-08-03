@@ -2,7 +2,7 @@ import './bmiList.css'
 function BmiList({range,bmi}) {
   return (
     <div>
-      <div className="table-box">
+      <div className="table-box col-10">
         <table className="table text-center text-white table-bordered bg-dark">
           <thead>
             <tr>
@@ -12,7 +12,7 @@ function BmiList({range,bmi}) {
             </tr>
           </thead>
           <tbody>
-            <tr className={bmi<18.5 ? "border-primary border-3":""}>
+            <tr className={bmi<18.5 && bmi>0 ? "border-primary border-3":""}>
               <td>Underweight</td>
               <td>&lt; 18.5</td>
               <td>&lt; {range.underWeight.low} KG</td>
