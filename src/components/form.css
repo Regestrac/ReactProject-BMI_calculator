@@ -27,3 +27,15 @@
 .button:hover{
     color: gray;
 }
+.option{
+    color: #fff;
+    background-color: #222;
+}
+.options{
+    margin-left: 5px;
+    color: #fff;
+    background-color: #252525;
+    border-radius: 5px;
+    border: 0px;
+    outline: 0px;
+}

@@ -1,18 +1,38 @@
 import React,{ useState } from "react";
 import './form.css';
 function Form({getData}) { //passing the details as props
-    const [Weight, setWeight] = useState(""); 
-    const [Height, setHeight] = useState("");
+    let [Weight, setWeight] = useState(""); 
+    let [Height, setHeight] = useState("");
     const [Alert, setAlert] = useState(false);
+    const [selectHeight, setSelectHeight] = useState("cm");
+    const [selectWeight, setSelectWeight] = useState("kg")
+    const changeHeightOption = (e)=>{
+        setSelectHeight(e.target.value)
+    }
+    const changeWeightOption=(e)=>{
+        setSelectWeight(e.target.value)
+    }
     const onSubmit =(e)=>{
         e.preventDefault();
         if(isNaN(Weight) || isNaN(Height)){ //checks wheather the input value is number
             setAlert(true)
         }else{
-            getData(Weight,(Height/100));  //passes the values only if it is number
+            if(selectHeight === "cm"){
+                Height=(Height/100); 
+            }else if(selectHeight==="m"){
+                Height=Height*1;
+            }else if(selectHeight==="ft"){
+                Height=(Height/3.28);
+            }else if(selectHeight==="in"){
+                Height=(Height/39.37);
+            }
+            if(selectWeight==="kg"){
+                Weight=Weight*1
+            }else if(selectWeight==="lb"){
+                Weight=(Weight/2.205)
+            }
+            getData(Weight,Height);
             setAlert(false)
-            // setHeight("") //used to clear the input field after checking bmi each time
-            // setWeight("")
         }
     };
     return (
@@ -23,13 +43,23 @@ function Form({getData}) { //passing the details as props
                     <div className="row">
                         <div className="col-6">
                             <div className="mb-3">
-                                <label className="form-label">Weight(KG):</label>
+                                <label className="form-label" for="weight">Weight:</label>
+                                <select className="options" id="weight" name="weight" onChange={changeWeightOption}>
+                                    <option className="option" value="kg">Kilograms(Kg)</option>
+                                    <option className="option" value="lb">Pounds(lb)</option>
+                                </select>
                                 <input type="text" className="form-control inp" value={Weight} onChange={(e)=>setWeight(e.target.value)} required/>
                             </div>
                         </div>
                         <div className="col-6">
                             <div className="mb-3">
-                                <label className="form-label">Height(cm):</label>
+                                <label className="form-label" for="height">Height:</label>
+                                <select className="options" id="height" name="height" onChange={changeHeightOption}>
+                                    <option className="option" value="cm">Centimeter(cm)</option>
+                                    <option className="option" value="m">meter(m)</option>
+                                    <option className="option" value="ft">Feet(Ft)</option>
+                                    <option className="option" value="in">Inches(In)</option>
+                                </select>
                                 <input type="text" className="form-control inp" value={Height} onChange={(e)=>setHeight(e.target.value)} required/>
                             </div>
                         </div>
