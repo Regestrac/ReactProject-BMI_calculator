@@ -1,3 +1,4 @@
+import React from "react";
 import BmiList from './components/BmiList';
 import BmiScore from './components/BmiScore';
 import Form from './components/Form';
@@ -21,12 +22,12 @@ function App() {
     setBmi(bmi);
     setBmiType(weightType(bmi)); //gets type after checking conditions
     const range = {
-      underWeight: { low: calWeight(18.499, h) },
-      normal: { low: calWeight(18.5, h), high: calWeight(24.999, h) },
-      overWeight: { low: calWeight(25, h), high: calWeight(29.999, h) },
-      obesityOne: { low: calWeight(30, h), high: calWeight(34.999, h) },
-      obesityTwo: { low: calWeight(35, h), high: calWeight(39.999, h) },
-      obesityThree: { high: calWeight(40, h) },
+      underWeight: { high: calWeight(18.499, h) },
+      normal: { low: calWeight(18.5, h), high: calWeight(24.994, h) },
+      overWeight: { low: calWeight(24.995, h), high: calWeight(29.994, h) },
+      obesityOne: { low: calWeight(29.995, h), high: calWeight(34.994, h) },
+      obesityTwo: { low: calWeight(34.995, h), high: calWeight(39.994, h) },
+      obesityThree: { low: calWeight(39.994, h) },
     }
     setBmiRange(range);
     setChangeWeight(weightChange(bmi, w, range));
@@ -37,10 +38,10 @@ function App() {
   const calWeight = (bmi, h) => (bmi * h * h).toFixed(2) //calculates weight
   const weightChange = (bmi, w, range) => {
     let changeObj;
-    if (bmi < 18.5) {
+    if (bmi <= 18.4999) {
       changeObj = { weight: (range.normal.low - w).toFixed(2), type: "negative" };
       return changeObj;
-    } else if (bmi >= 25) {
+    } else if (bmi > 24.9999) {
       changeObj = { weight: (w - range.normal.high).toFixed(2), type: "positive" };
       return changeObj;
     } else {

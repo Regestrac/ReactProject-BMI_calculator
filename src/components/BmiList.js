@@ -1,3 +1,4 @@
+import React from 'react'
 import './bmiList.css'
 function BmiList({range,bmi}) {
   return (
@@ -15,7 +16,7 @@ function BmiList({range,bmi}) {
             <tr className={bmi<18.5 && bmi>0 ? "border-primary border-3":""}>
               <td>Underweight</td>
               <td>&lt; 18.5</td>
-              <td>&lt; {range.underWeight.low} KG</td>
+              <td>&lt; {range.underWeight.high} KG</td>
 
             </tr>
             <tr className={bmi>=18.5 && bmi<25 ? "border-success border-3":""}>
@@ -42,7 +43,7 @@ function BmiList({range,bmi}) {
             <tr  className={bmi>=40 ? "border-danger border-3":""}>
               <td>Obesity class III</td>
               <td>&gt;= 40</td>
-              <td>&gt; {range.obesityThree.high} KG</td>
+              <td>&gt; {range.obesityThree.low} KG</td>
             </tr>
           </tbody>
         </table>

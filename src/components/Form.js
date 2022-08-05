@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React,{ useState } from "react";
 import './form.css';
 function Form({getData}) { //passing the details as props
     const [Weight, setWeight] = useState(""); 
@@ -9,7 +9,7 @@ function Form({getData}) { //passing the details as props
         if(isNaN(Weight) || isNaN(Height)){ //checks wheather the input value is number
             setAlert(true)
         }else{
-            getData(Weight,Height);  //passes the values only if it is number
+            getData(Weight,(Height/100));  //passes the values only if it is number
             setAlert(false)
             // setHeight("") //used to clear the input field after checking bmi each time
             // setWeight("")
@@ -29,7 +29,7 @@ function Form({getData}) { //passing the details as props
                         </div>
                         <div className="col-6">
                             <div className="mb-3">
-                                <label className="form-label">Heigh(m):</label>
+                                <label className="form-label">Height(cm):</label>
                                 <input type="text" className="form-control inp" value={Height} onChange={(e)=>setHeight(e.target.value)} required/>
                             </div>
                         </div>

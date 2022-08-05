@@ -1,3 +1,4 @@
+import React from 'react'
 import './bmiScore.css'
 function BmiScore({bmiNo, bmiName, changeWeight}) {
   return (
